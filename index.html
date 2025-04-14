@@ -4,6 +4,8 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>O Nosso Amor</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet">
   <style>
     * {
       box-sizing: border-box;
@@ -12,8 +14,8 @@
     }
 
     body {
-      font-family: 'Segoe UI', sans-serif;
-      background: linear-gradient(135deg, #fdfcfa, #f7e9e9);
+      font-family: 'Open Sans', sans-serif;
+      background: linear-gradient(135deg, #fdfcfa, #f8eaea);
       color: #333;
       display: flex;
       flex-direction: column;
@@ -25,62 +27,84 @@
     }
 
     h1 {
-      font-size: 2rem;
-      margin-bottom: 15px;
-      color: #4b3f3f;
-      max-width: 600px;
+      font-family: 'Great Vibes', cursive;
+      font-size: 2.8rem;
+      margin-bottom: 10px;
+      color: #b04545;
     }
 
     .timer {
-      font-size: 1.2rem;
+      font-size: 1.4rem;
       margin-bottom: 40px;
-      color: #7b5c5c;
+      color: #5a4444;
+      font-weight: 600;
     }
 
-    .gallery {
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 20px;
-      width: 100%;
-      max-width: 600px;
+    .slider {
+      width: 90%;
+      max-width: 500px;
+      position: relative;
+      overflow: hidden;
+      border-radius: 20px;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
     }
 
-    .gallery img {
+    .slides {
+      display: flex;
+      transition: transform 0.5s ease-in-out;
       width: 100%;
-      border-radius: 16px;
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    .slides img {
+      width: 100%;
+      flex-shrink: 0;
+    }
+
+    .dots {
+      margin-top: 15px;
+    }
+
+    .dot {
+      display: inline-block;
+      height: 10px;
+      width: 10px;
+      margin: 0 5px;
+      background-color: #bbb;
+      border-radius: 50%;
+      cursor: pointer;
+    }
+
+    .active {
+      background-color: #b04545;
     }
 
     footer {
       margin-top: 50px;
       font-size: 0.9rem;
-      color: #888;
-    }
-
-    @media (min-width: 700px) {
-      h1 {
-        font-size: 2.2rem;
-      }
-
-      .gallery {
-        grid-template-columns: repeat(2, 1fr);
-      }
+      color: #aaa;
     }
   </style>
 </head>
 <body>
 
-  <h1>Para nunca te esqueceres do nosso dia parreca te amo🐧</h1>
+  <h1>Para nunca te esqueceres do nosso dia até ao infinito</h1>
   <div class="timer" id="contador"></div>
 
-  <div class="gallery">
-    <img src="IMG-20250316-WA0006.jpg" alt="Foto nossa 1">
-    <img src="IMG_20250211_165944_198.webp" alt="Foto nossa 2">
-    <img src="IMG_20250215_143408.jpg" alt="Foto nossa 3">
+  <div class="slider">
+    <div class="slides" id="slides">
+      <img src="IMG_20250211_165944_198.webp" alt="Foto 1">
+      <img src="IMG_20250211_165944_405.webp" alt="Foto 2">
+      <img src="IMG_20250211_165944_653.webp" alt="Foto 3">
+    </div>
+  </div>
+  <div class="dots">
+    <span class="dot active" onclick="mudarSlide(0)"></span>
+    <span class="dot" onclick="mudarSlide(1)"></span>
+    <span class="dot" onclick="mudarSlide(2)"></span>
   </div>
 
   <footer>
-  yha demorei bue tempo a por as imagens mas esta ai e o preço que estou disposto a pagar para te amar ate o final da vida apenas espero que corra tudo bem com nos os dois isto fica aqui para sempre ate o dia eu me lembrar de apagar mas esperemos que isso nunca aconteça te amo parreca
+    Feito com amor para sempre
   </footer>
 
   <script>
@@ -101,6 +125,30 @@
 
     setInterval(atualizarContador, 1000);
     atualizarContador();
+
+    // Slide automático
+    let slideIndex = 0;
+    const slides = document.getElementById("slides");
+    const dots = document.querySelectorAll(".dot");
+
+    function mostrarSlide(index) {
+      slideIndex = index;
+      const largura = slides.clientWidth;
+      slides.style.transform = `translateX(-${index * largura}px)`;
+
+      dots.forEach(dot => dot.classList.remove("active"));
+      dots[index].classList.add("active");
+    }
+
+    function autoSlide() {
+      slideIndex = (slideIndex + 1) % 3;
+      mostrarSlide(slideIndex);
+    }
+
+    setInterval(autoSlide, 5000);
+    function mudarSlide(i) {
+      mostrarSlide(i);
+    }
   </script>
 
 </body>
