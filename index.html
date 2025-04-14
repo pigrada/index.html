@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>O Nosso Amor</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Segoe UI', sans-serif;
+      background: linear-gradient(135deg, #fdfcfa, #f7e9e9);
+      color: #333;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      min-height: 100vh;
+      text-align: center;
+      padding: 30px 15px;
+    }
+
+    h1 {
+      font-size: 2rem;
+      margin-bottom: 15px;
+      color: #4b3f3f;
+      max-width: 600px;
+    }
+
+    .timer {
+      font-size: 1.2rem;
+      margin-bottom: 40px;
+      color: #7b5c5c;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 20px;
+      width: 100%;
+      max-width: 600px;
+    }
+
+    .gallery img {
+      width: 100%;
+      border-radius: 16px;
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.1);
+    }
+
+    footer {
+      margin-top: 50px;
+      font-size: 0.9rem;
+      color: #888;
+    }
+
+    @media (min-width: 700px) {
+      h1 {
+        font-size: 2.2rem;
+      }
+
+      .gallery {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <h1>Para nunca te esqueceres do nosso dia até ao infinito</h1>
+  <div class="timer" id="contador"></div>
+
+  <div class="gallery">
+    <img src="foto1.jpg" alt="Foto nossa 1">
+    <img src="foto2.jpg" alt="Foto nossa 2">
+    <img src="foto3.jpg" alt="Foto nossa 3">
+  </div>
+
+  <footer>
+    Feito com amor
+  </footer>
+
+  <script>
+    const inicio = new Date("2024-08-15T00:03:00");
+
+    function atualizarContador() {
+      const agora = new Date();
+      const tempo = agora - inicio;
+
+      const dias = Math.floor(tempo / (1000 * 60 * 60 * 24));
+      const horas = Math.floor((tempo / (1000 * 60 * 60)) % 24);
+      const minutos = Math.floor((tempo / (1000 * 60)) % 60);
+      const segundos = Math.floor((tempo / 1000) % 60);
+
+      document.getElementById("contador").textContent =
+        `Juntos há ${dias} dias, ${horas}h ${minutos}m ${segundos}s`;
+    }
+
+    setInterval(atualizarContador, 1000);
+    atualizarContador();
+  </script>
+
+</body>
+</html>
